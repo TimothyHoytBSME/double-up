@@ -199,10 +199,10 @@ const mainLoop = function(){
         ctx.textAlign = "center"
         ctx.textBaseline = 'middle'
         if(verticalOrien){
-            shadowText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1], "SCORE", textH*0.75, "black")
-            fillText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1], "SCORE", textH*0.75, "white")
-            shadowText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1]+textH, score.toString(), textH*0.75, "black")
-            fillText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1]+textH, score.toString(), textH*0.75, "white")
+            shadowText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1]-textH, "SCORE", textH*0.75, "black")
+            fillText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1]-textH, "SCORE", textH*0.75, "white")
+            shadowText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1], score.toString(), textH*0.75, "black")
+            fillText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1], score.toString(), textH*0.75, "white")
 
             // shadowText(gameCent[0]-textH*4, gameRec[3]/10+gameRec[1], difficulties[difficulty], textH*0.75, "black")
             // fillText(gameCent[0]-textH*4, gameRec[3]/10+gameRec[1], difficulties[difficulty], textH*0.75, "white")
