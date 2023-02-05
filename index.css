@@ -1,0 +1,68 @@
+
+:root{
+    --sspx: 2px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: contain;
+    position: fixed;
+}
+
+main {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(64, 64, 64);
+}
+audio{
+    display: none
+}
+
+#theCanvas{
+    cursor: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+input#un-mute {
+    display: none;
+}
+
+.unmute img {
+    display: none;
+    position: absolute;
+}
+
+input#un-mute:checked ~ .unmute img {
+    display: initial;
+}
+
+input#un-mute:checked ~ .mute img {
+    display: none;
+}
+
+.muteimage{
+    width: 200px;
+    position: absolute;
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(180deg) brightness(11118%) contrast(119%) drop-shadow(0px 0px var(--sspx) rgb(0, 0, 0));
+}
+
+
+#themenu{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
+    /* background-color: rgb(64, 64, 64); */
+}

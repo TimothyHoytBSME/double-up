@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0"/>
+    
+    <script src="globals.js" defer></script>
+    <script src="functions.js" defer></script>
+    <script src="index.js" defer></script>
+    <script src="initialization.js" defer></script>
+</head>
+<body>
+  <audio id="pop_low" src="pop_low.mp3" preload="auto" controls="none"></audio>
+  <audio id="pop_mid" src="pop_mid.mp3" preload="auto" controls="none"></audio>
+  <audio id="pop_high" src="pop_high.mp3" preload="auto" controls="none"></audio>
+
+  <script src="preload.js"></script>
+  <main>
+
+    <!-- <div id = "themenu" >
+      <select name="difficulty" id="difficulty">
+        <option value="EASY" selected >EASY</option>
+        <option value="CHALLENGE">CHALLENGING</option>
+        <option value="IMPOSSIBLE" >IMPOSSIBLE</option>
+      </select>
+
+      <select name="gametype" id="gametype">
+        <option value="INTEGER"selected>INTEGER</option>
+        <option value="BOTH">BOTH</option>
+        <option value="DECIMAL" >DECIMAL</option>
+      </select>
+    </div> -->
+
+    <input type="checkbox" name="un-mute" id="un-mute">
+    <label for="un-mute" class="mute mutelabel">
+        <img class = "muteimage" src="http://upload.wikimedia.org/wikipedia/commons/3/3f/Mute_Icon.svg" alt="Mute_Icon.svg" title="Mute icon">
+    </label>
+    <label for="un-mute" class="unmute mutelabel">
+        <img class = "muteimage" src="http://upload.wikimedia.org/wikipedia/commons/2/21/Speaker_Icon.svg" alt="Speaker_Icon.svg" title="Unmute/speaker icon">
+    </label>
+  </main>
+  
+</body>
+</html>
