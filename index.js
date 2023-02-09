@@ -409,6 +409,7 @@ const saveGame = function(){
         "score": score,
         "highscore": highscore,
         "gridDims": [...gridDims],
+        "minInd": minInd
     }
 
     const gameString = JSON.stringify(gameObj)
@@ -424,6 +425,7 @@ const loadGameDataIfAble = function(){
         highscore = gameObj.highscore
         gridDims = [...gameObj.gridDims]
         gameGrid = deepClone(gameObj.gameGrid)
+        minInd = gameObj.minInd
 
         console.log('GAME LOADED FROM STORAGE')
     }else{
