@@ -1,9 +1,9 @@
 
-const Version = "1.0-alpha-doubleup"
+const Version = "1.1-alpha-doubleup"
 
 
 var backColor = [20,20,20];
-var gridDims = [8,6]
+var gridDims = [4,4]
 
 
 var gridSize = [1,1] //gets calculated
@@ -23,7 +23,11 @@ var chain = [] //gets calculated
 // var difficulty = 0 //gets calculated
 // var difficulties = ["EASY","CHALLENGE","IMPOSSIBLE"]
 var score = 0//[0,0,0,0,0,0,0,0,0]; //gets calculated
+var highscore = 0
 var justScored = false; //gets calculated
+var ranMax = 7;
+var highestInd = ranMax+3;
+var minInd = 0;
 
 const vals = [
     "1","2","4","8","16","32","64","128","256","512",
@@ -199,19 +203,29 @@ const mainLoop = function(){
         ctx.textAlign = "center"
         ctx.textBaseline = 'middle'
         if(verticalOrien){
-            shadowText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1]-textH, "SCORE", textH*0.75, "black")
-            fillText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1]-textH, "SCORE", textH*0.75, "white")
-            shadowText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1], score.toString(), textH*0.75, "black")
-            fillText(gameCent[0]+textH*4, gameRec[3]/10+gameRec[1], score.toString(), textH*0.75, "white")
+            shadowText(gameCent[0]+textH*3, gameRec[3]/8+gameRec[1]-textH, "SCORE", textH*0.75, "black")
+            fillText(gameCent[0]+textH*3, gameRec[3]/8+gameRec[1]-textH, "SCORE", textH*0.75, "white")
+            shadowText(gameCent[0]+textH*3, gameRec[3]/8+gameRec[1], score.toString(), textH*0.75, "black")
+            fillText(gameCent[0]+textH*3, gameRec[3]/8+gameRec[1], score.toString(), textH*0.75, "white")
+
+            shadowText(gameCent[0]-textH*3, gameRec[3]/8+gameRec[1]-textH, "HIGHSCORE", textH*0.75, "black")
+            fillText(gameCent[0]-textH*3, gameRec[3]/8+gameRec[1]-textH, "HIGHSCORE", textH*0.75, "white")
+            shadowText(gameCent[0]-textH*3, gameRec[3]/8+gameRec[1], highscore.toString(), textH*0.75, "black")
+            fillText(gameCent[0]-textH*3, gameRec[3]/8+gameRec[1], highscore.toString(), textH*0.75, "white")
 
             // shadowText(gameCent[0]-textH*4, gameRec[3]/10+gameRec[1], difficulties[difficulty], textH*0.75, "black")
             // fillText(gameCent[0]-textH*4, gameRec[3]/10+gameRec[1], difficulties[difficulty], textH*0.75, "white")
 
         }else{
-            shadowText(gameRec[2]/13+gameRec[0], gameCent[1]-textH*3, "SCORE", textH*0.75, "black")
-            fillText(gameRec[2]/13+gameRec[0], gameCent[1]-textH*3, "SCORE", textH*0.75, "white")
-            shadowText(gameRec[2]/13+gameRec[0], gameCent[1]-textH*2, score.toString(), textH*0.75, "black")
-            fillText(gameRec[2]/13+gameRec[0], gameCent[1]-textH*2, score.toString(), textH*0.75, "white")
+            shadowText(gameRec[2]/9+gameRec[0], gameCent[1]-textH*3, "SCORE", textH*0.75, "black")
+            fillText(gameRec[2]/9+gameRec[0], gameCent[1]-textH*3, "SCORE", textH*0.75, "white")
+            shadowText(gameRec[2]/9+gameRec[0], gameCent[1]-textH*2, score.toString(), textH*0.75, "black")
+            fillText(gameRec[2]/9+gameRec[0], gameCent[1]-textH*2, score.toString(), textH*0.75, "white")
+
+            shadowText(gameRec[2]-gameRec[2]/9+gameRec[0], gameCent[1]-textH*3, "HIGHSCORE", textH*0.75, "black")
+            fillText(gameRec[2]-gameRec[2]/9+gameRec[0], gameCent[1]-textH*3, "HIGHSCORE", textH*0.75, "white")
+            shadowText(gameRec[2]-gameRec[2]/9+gameRec[0], gameCent[1]-textH*2, highscore.toString(), textH*0.75, "black")
+            fillText(gameRec[2]-gameRec[2]/9+gameRec[0], gameCent[1]-textH*2, highscore.toString(), textH*0.75, "white")
 
             // shadowText(-gameRec[2]/13+gameRec[0]+gameRec[2], gameCent[1]-textH*3, difficulties[difficulty], textH*0.75, "black")
             // fillText(-gameRec[2]/13+gameRec[0]+gameRec[2], gameCent[1]-textH*3, difficulties[difficulty], textH*0.75, "white")
@@ -276,12 +290,25 @@ const checkRelease = function(){
             var last = chain[chain.length -1]
             var lastInd = gameGrid[last[0]][last[1]].valInd
             var newInd = lastInd+1
+            if(newInd > highestInd){
+                highestInd = newInd
+                minInd++
+            }
             gameGrid[last[0]][last[1]].valInd = newInd
             score+= (lastInd+1)*(lastInd+1)
+            if(score>highscore){
+                highscore = score
+            }
             for(var i=0; i<(chain.length-1); i++){
                 var p = chain[i]
-                gameGrid[p[0]][p[1]].valInd = floor(random()*3)
-
+                gameGrid[p[0]][p[1]].valInd = floor(random()*(ranMax-3)+minInd)
+            }
+            for(var i=0; i< gridDims[0]; i++){
+                for(var j=0; j< gridDims[1]; j++){
+                    if(gameGrid[i][j].valInd < minInd){
+                        gameGrid[i][j].valInd = minInd;
+                    }
+                }
             }
             saveGame()
         }
@@ -339,7 +366,7 @@ const genGrid = function(){
             for(var j=0; j<gridDims[1]; j++){
                 var piece = []
                 piece = {
-                    valInd: floor(random()*4)
+                    valInd: floor(random()*ranMax)
                 }
                 row.push(piece)
             }
@@ -379,6 +406,7 @@ const saveGame = function(){
     const gameObj = {
         "gameGrid": deepClone(gameGrid),
         "score": score,
+        "highscore": highscore,
         "gridDims": [...gridDims],
     }
 
@@ -392,6 +420,7 @@ const loadGameDataIfAble = function(){
     if (!(localStorage.getItem(Version) === null)) {
         const gameObj = JSON.parse(window.localStorage.getItem(Version))
         score = gameObj.score
+        highscore = gameObj.highscore
         gridDims = [...gameObj.gridDims]
         gameGrid = deepClone(gameObj.gameGrid)
 
