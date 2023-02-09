@@ -324,6 +324,7 @@ const doNew = function(){
     
     if (confirm('This will erase your score. Are you sure?')) {
         score = 0;
+        minInd = 0;
         genGrid()
     }
 }
