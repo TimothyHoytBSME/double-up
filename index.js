@@ -1,5 +1,5 @@
 
-const Version = "1.1-alpha-doubleup"
+const Version = "1.2-alpha-doubleup"
 
 
 var backColor = [20,20,20];
